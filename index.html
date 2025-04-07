@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLeaf Wellness | Premium Cannabis</title>
+    <!-- Bootstrap & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --green-dark: #2d5a27;
+            --green-light: #4a7c3a;
+            --gold: #d4af37;
+        }
+        
+        /* Header */
+        .brand-header {
+            background: var(--green-dark);
+            border-bottom: 3px solid var(--gold);
+        }
+        
+        /* Product Cards */
+        .product-card {
+            transition: all 0.3s;
+            border: 2px solid var(--green-light);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Cannabis-themed hero image */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1589476993333-f55b84301219') center/cover;
+            height: 60vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== -->
+    <!-- EDITABLE CMS CONTENT -->
+    <!-- ==================== -->
+    <script>
+    // This simulates a CMS backend - EDIT THESE VALUES:
+    const cmsContent = {
+        products: [
+            {
+                id: 1,
+                name: "Premium CBD Oil",
+                price: 49.99,
+                image: "https://images.unsplash.com/photo-1600956054489-a23507c64a54",
+                description: "Full-spectrum CBD oil with organic hemp extract"
+            },
+            {
+                id: 2,
+                name: "THC Gummies",
+                price: 29.99,
+                image: "https://images.unsplash.com/photo-1606313564200-75f2c2a951d8",
+                description: "Mixed fruit flavors, 10mg THC per gummy"
+            }
+        ],
+        editableText: {
+            heroTitle: "Premium Cannabis Products",
+            heroSubtitle: "Lab Tested • Organic • Sustainably Grown"
+        }
+    };
+    </script>
+
+    <!-- Header -->
+    <header class="brand-header py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-cannabis text-warning fs-1 me-3"></i>
+                    <h1 class="text-white m-0">GreenLeaf</h1>
+                </div>
+                <button class="btn btn-warning">Admin Login</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center text-white">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-3" id="heroTitle"></h1>
+            <p class="lead fs-4" id="heroSubtitle"></p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Products</h2>
+            <div class="row g-4" id="productContainer">
+                <!-- Products load here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>© 2023 GreenLeaf Wellness</p>
+            <small class="text-muted">This is a demo site for educational purposes</small>
+        </div>
+    </footer>
+
+    <!-- ==================== -->
+    <!-- NO NEED TO EDIT BELOW -->
+    <!-- ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load editable content
+        document.getElementById('heroTitle').textContent = cmsContent.editableText.heroTitle;
+        document.getElementById('heroSubtitle').textContent = cmsContent.editableText.heroSubtitle;
+        
+        // Generate product cards
+        const container = document.getElementById('productContainer');
+        cmsContent.products.forEach(product => {
+            container.innerHTML += `
+                <div class="col-md-4">
+                    <div class="product-card card h-100 overflow-hidden">
+                        <img src="${product.image}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${product.name}">
+                        <div class="card-body">
+                            <h3>${product.name}</h3>
+                            <p class="text-success fw-bold">$${product.price.toFixed(2)}</p>
+                            <p>${product.description}</p>
+                            <button class="btn btn-success w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        // Admin button functionality
+        document.querySelector('.btn-warning').addEventListener('click', () => {
+            alert("In a real CMS, this would open the login page.\n\nTo edit products/prices in this demo:\n1. Find the 'cmsContent' object in the code\n2. Modify the product array values");
+        });
+    </script>
+</body>
+</html>
